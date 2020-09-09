@@ -1,0 +1,447 @@
+\documentclass{beamer}
+\mode<presentation>
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{advdate}
+\usepackage{adjustbox}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{xcolor}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codeblue}{rgb}{0.8,0.3,0.3}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.99,0.99,0.99}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},  
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{codeblue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,        
+    breaklines=true,                
+    captionpos=b,                   
+    keepspaces=true,                
+    showspaces=false,               
+    showstringspaces=false,
+    showtabs=false,                 
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+\usepackage{url}
+
+\def\UrlBreaks{\do\/\do-}
+\usetheme{Warsaw}
+\usecolortheme{structure}
+
+
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{author in head/foot}%
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\setbeamertemplate{navigation symbols}{}
+
+\providecommand{\nCr}[2]{\,^{#1}C_{#2}} % nCr
+\providecommand{\nPr}[2]{\,^{#1}P_{#2}} % nPr
+\providecommand{\mbf}{\mathbf}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
+\providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
+\providecommand{\lsbrak}[1]{\ensuremath{{}\left[#1\right.}}
+\providecommand{\rsbrak}[1]{\ensuremath{{}\left.#1\right]}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\lbrak}[1]{\ensuremath{\left(#1\right.}}
+\providecommand{\rbrak}[1]{\ensuremath{\left.#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\providecommand{\lcbrak}[1]{\ensuremath{\left\{#1\right.}}
+\providecommand{\rcbrak}[1]{\ensuremath{\left.#1\right\}}}
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
+\providecommand{\res}[1]{\Res\displaylimits_{#1}} 
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\providecommand{\mtx}[1]{\mathbf{#1}}
+\providecommand{\mean}[1]{E\left[ #1 \right]}
+\providecommand{\fourier}{\overset{\mathcal{F}}{ \rightleftharpoons}}
+%\providecommand{\hilbert}{\overset{\mathcal{H}}{ \rightleftharpoons}}
+\providecommand{\system}{\overset{\mathcal{H}}{ \longleftrightarrow}}
+	%\newcommand{\solution}[2]{\textbf{Solution:}{#1}}
+%\newcommand{\solution}{\noindent \textbf{Solution: }}
+\providecommand{\dec}[2]{\ensuremath{\overset{#1}{\underset{#2}{\gtrless}}}}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\let\vec\mathbf
+
+\lstset{
+%language=C,
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+
+\numberwithin{equation}{section}
+
+\title{EE2101-Control Systems\\Ass-1,Problem 6}
+\author{A PRASHANTH\\EE19BTECH11003}
+
+\date{\today} 
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+\section{Problem}
+
+\begin{frame}
+\frametitle{Problem }
+Use MATLAB and the Symbolic Math Toolbox to find the inverse Laplace transform of the following frequency functions :
+\begin{equation}
+    a.\quad  G(s) = \frac{(s+5)(s^2+3s+10)}{(s+3)(s+4)(s^2+2s+100)}
+\end{equation}
+\begin{equation}
+    b.\quad G(s) = \frac{(s^3+4s^2+2s+6)}{(s+8)(s^2+8s+3)(s^2+5s+7)}
+\end{equation}
+
+\vspace{2.5cm}⁣P.S. Here we are using Python instead of MATLAB
+
+
+\end{frame}
+
+%\subsection{Literature}
+\section{Solution}
+
+
+\begin{frame}
+\subsection{Solution for a.}
+\frametitle{a. Solution}
+%\framesubtitle{Literature}
+Firstly let us take function a. \quad i.e.
+\begin{equation}
+    G(s) = \frac{(s+5) (s^2+3s+10)}{(s+3)(s+4)(s^2+2s+100)}
+\end{equation}
+Inverse Laplace transform of G(s):
+\begin{equation}
+    L^{-1}\left\{\frac{\left(s+5\right)\left(s^2+3s+10\right)}{\left(s+3\right)\left(s+4\right)\left(s^2+2s+100\right)}\right\}
+\end{equation}
+Now let us take partial fraction of
+\begin{equation}
+    \frac{(s+5) (s^2+3s+10)}{(s+3)(s+4)(s^2+2s+100)} \quad is
+\end{equation}
+\begin{equation}
+    \implies \frac{s^3+8s^2+25s+50}{\left(s+3\right)\left(s+4\right)\left(s^2+2s+100\right)}
+\end{equation}
+
+\end{frame}
+\begin{frame}{Solution}
+    Now create partial fraction template using the denominator,
+\begin{equation}
+    \left(s+3\right)\left(s+4\right)\left(s^2+2s+100\right)
+\end{equation}
+i.e
+\begin{equation*}
+    \frac{s^3+8s^2+25s+50}{\left(s+3\right)\left(s+4\right)\left(s^2+2s+100\right)}=\frac{a_0}{s+3}+\frac{a_1}{s+4}+\frac{a_3s+a_2}{s^2+2s+100}
+\end{equation*}
+\mathrm{Multiply\:equation\:by\:the\:denominator,}
+\begin{equation*}
+   \implies \frac{\left(s^3+8s^2+25s+50\right)\left(s+3\right)\left(s+4\right)\left(s^2+2s+100\right)}{\left(s+3\right)\left(s+4\right)\left(s^2+2s+100\right)}=\\ $\frac{a_0\left(s+3\right)\left(s+4\right)\left(s^2+2s+100\right)}{s+3}+\frac{a_1\left(s+3\right)\left(s+4\right)\left(s^2+2s+100\right)}{s+4}+\frac{\left(a_3s+a_2\right)\left(s+3\right)\left(s+4\right)\left(s^2+2s+100\right)}{s^2+2s+100}$
+\end{equation*}
+
+\end{frame}
+\begin{frame}{Solution}
+By simplifying above equation,
+
+\begin{equation*}
+     s^3+8s^2+25s+50=a_0\left(s+4\right)\left(s^2+2s+100\right)
+     \\
+     +a_1\left(s+3\right)\left(s^2+2s+100\right)+\left(a_3s+a_2\right)\left(s+3\right)\left(s+4\right)
+\end{equation*}
+\vspace{2mm}
+
+Solve the unknown parameters by plugging the\:real roots of the denominator  -3, -4 \\
+For the root denominator -3:\quad a_0= \frac{20}{103} \\
+For the root denominator -4:\qquad a_1=-\frac{7}{54} \\
+\begin{equation*}
+    \therefore a_0=\frac{20}{103},\:a_1=-\frac{7}{54}
+\end{equation*}
+
+
+\end{frame}
+\begin{frame}{Solution}
+    Plug\:in\:the\:solutions\:to\:the\:known\:parameters,
+\begin{equation*}
+    s^3+8s^2+25s+50=\frac{20}{103}\left(s+4\right)\left(s^2+2s+100\right)
+    \\
+    +\left(-\frac{7}{54}\right)\left(s+3\right)\left(s^2+2s+100\right)+\left(a_3s+a_2\right)\left(s+3\right)\left(s+4\right)
+\end{equation*}
+\vspace{2.5mm}
+
+Expand
+\begin{equation*}
+    s^3+8s^2+25s+50=a_3s^3+\frac{359s^3}{5562}+a_2s^2+7a_3s^2+\frac{2875s^2}{5562}+7a_2s
+    \\
+    +12a_3s+\frac{20107s}{2781}+12a_2-\frac{350}{9}+\frac{8000}{103}
+\end{equation*}
+\vspace{2.5mm}
+
+\end{frame}
+
+\begin{frame}{Solution}
+
+\mathrm{Extract\:Variables\:from\:within\:fractions,}
+\begin{equation*}
+    s^3+8s^2+25s+50=a_3s^3+\frac{359}{5562}s^3+a_2s^2+7a_3s^2+\frac{2875}{5562}s^2+7a_2s
+    \\
+    +12a_3s+\frac{20107}{2781}s+12a_2-\frac{350}{9}+\frac{8000}{103}
+\end{equation*}
+\vspace{2.7}
+
+\mathrm{Group\:elements\:according\:to\:powers\:of\:}s,
+\begin{equation*}
+    1\cdot \:s^3+8s^2+25s+50=s^3\left(a_3+\frac{359}{5562}\right)+s^2\left(a_2+7a_3+\frac{2875}{5562}\right)
+    \\
+    +s\left(7a_2+12a_3+\frac{20107}{2781}\right)+\left(12a_2+\frac{8000}{103}-\frac{350}{9}\right)
+\end{equation*}
+\end{frame}
+\begin{frame}{Solution}
+    Equate the coefficients of similar terms on both sides to create a list of equations
+\begin{equation*}
+    \begin{bmatrix}12a_2-\frac{350}{9}+\frac{8000}{103}=50\\ 7a_2+12a_3+\frac{20107}{2781}=25\\ a_2+7a_3+\frac{2875}{5562}=8\\ a_3+\frac{359}{5562}=1\end{bmatrix}
+\end{equation*}
+By solving above equation,
+\begin{equation*}
+    \therefore a_2=\frac{2600}{2781},\:a_3=\frac{5203}{5562}
+\end{equation*}
+\end{frame}
+\begin{frame}{Solution}
+    Plug the solutions to the partial fraction parameters to obtain the final result \\
+\therefore a_0=\frac{20}{103},\:a_1=-\frac{7}{54},a_2=\frac{2600}{2781},\:a_3=\frac{5203}{5562} \\ 
+\vspace{2mm}
+i.e.
+\begin{equation*}
+    \frac{\frac{20}{103}}{s+3}+\frac{\left(-\frac{7}{54}\right)}{s+4}+\frac{\frac{5203}{5562}s+\frac{2600}{2781}}{s^2+2s+100}
+\end{equation*}
+Simplify above eqn.
+\begin{equation*}
+    \frac{20}{103\left(s+3\right)}-\frac{7}{54\left(s+4\right)}+\frac{5203s+5200}{5562\left(s^2+2s+100\right)}
+\end{equation*}
+\end{frame}
+\begin{frame}{Solution}
+    \therefore the\:partial\:fractions\:of\:G(s)\:are \\
+\begin{equation*}
+    L^{-1}\left\{\frac{20}{103\left(s+3\right)}-\frac{7}{54\left(s+4\right)}+\frac{5203s+5200}{5562\left(s^2+2s+100\right)}\right\}
+\end{equation*}
+After expanding
+\begin{equation*}
+    =L^{-1}\biggr\{\frac{20}{103\left(s+3\right)}-\frac{7}{54\left(s+4\right)}+\frac{5203}{5562}\cdot \frac{s+1}{\left(s+1\right)^2+99}
+\end{equation*}
+\begin{equation*}
+    -\frac{1}{1854}\cdot\frac{1}{\left(s+1\right)^2+99}\biggr\}
+\end{equation*}
+
+
+
+\end{frame}
+\begin{frame}{Solution}
+\mathrm{By\:using\:linearity\:property\:of\:Inverse\:Laplace\:Transform:} \\
+\mathrm{For\:functions\:}f\left(s\right),\:g\left(s\right)\mathrm{\:and\:constants\:}a,\:b:\quad L^{-1}\left\{a\cdot f\left(s\right)+b\cdot g\left(s\right)\right\}=a\cdot L^{-1}\left\{f\left(s\right)\right\}+b\cdot L^{-1}\left\{g\left(s\right)\right\}
+
+\begin{equation*}
+    =L^{-1}\left\{\frac{20}{103\left(s+3\right)}\right\}-L^{-1}\left\{\frac{7}{54\left(s+4\right)}\right\}+\frac{5203}{5562}L^{-1}\left\{\frac{s+1}{\left(s+1\right)^2+99}\right\}
+\end{equation*}
+    
+\begin{equation*}
+    -\frac{1}{1854}L^{-1}\left\{\frac{1}{\left(s+1\right)^2+99}\right\}
+\end{equation*}
+
+\begin{equation*}
+    =\frac{20}{103}e^{-3t}-\frac{7}{54}e^{-4t}+\frac{5203}{5562}e^{-t}\cos \left(3\sqrt{11}t\right)
+\end{equation*}
+\begin{equation*}
+    -\frac{1}{1854}e^{-t}\frac{1}{3\sqrt{11}}\sin \left(3\sqrt{11}t\right)
+\end{equation*}
+\end{frame}
+\begin{frame}{Solution}
+\begin{equation*}
+    =\frac{20}{103}e^{-3t}-\frac{7}{54}e^{-4t}+\frac{5203}{5562}e^{-t}\cos \left(3\sqrt{11}t\right)-\frac{1}{5562\sqrt{11}}e^{-t}\sin \left(3\sqrt{11}t\right)
+\end{equation*}
+
+
+\therefore \textbf{Inverse}\:\textbf{Laplace}\:\textbf{Transform}\:\textbf{of} \\
+\begin{equation*}
+    \frac{(s+5) (s^2+3s+10)}{(s+3)(s+4)(s^2+2s+100)} :
+\end{equation*}
+\begin{equation*}
+    =\frac{20}{103}e^{-3t}-\frac{7}{54}e^{-4t}+\frac{5203}{5562}e^{-t}\cos \left(3\sqrt{11}t\right)-\frac{1}{5562\sqrt{11}}e^{-t}\sin \left(3\sqrt{11}t\right)
+\end{equation*}
+\end{frame}
+
+\begin{frame}{b. Solution}
+\subsection{Solution for b.}
+Now let us take function b. \quad i.e.
+\begin{equation}
+    G(s) = \frac{(s^3+4s^2+2s+6)}{(s+8)(s^2+8s+3)(s^2+5s+7)}
+\end{equation}
+Inverse Laplace transform of given equation is:
+\begin{equation}
+    L^{-1}\left\{\frac{s^3+4s^2+2s+6}{\left(s+8\right)\left(s^2+8s+3\right)\left(s^2+5s+7\right)}\right\}
+\end{equation}
+Now by taking the partial fractions of above eqn, it is
+\begin{equation*}
+    =L^{-1}\left\{-\frac{266}{93\left(s+8\right)}+\frac{1199s+534}{417\left(s^2+8s+3\right)}+\frac{-65s-1014}{4309\left(s^2+5s+7\right)}\right\}
+\end{equation*}
+\end{frame}
+\begin{frame}{Solution}
+\begin{equation*}
+    =L^{-1}\left\{-\frac{266}{93\left(s+8\right)}+\frac{1199}{417}\cdot \frac{s+4}{\left(s+4\right)^2-13}-\frac{4262}{417}\cdot \frac{1}{\left(s+4\right)^2-13}
+\end{equation*}
+\begin{equation*}
+    +\frac{-65s-1014}{4309\left(s^2+5s+7\right)}\biggr\}
+\end{equation*}
+\begin{equation*}
+    =L^{-1}\left\{-\frac{266}{93\left(s+8\right)}+\frac{1199}{417}\cdot \frac{s+4}{\left(s+4\right)^2-13}-\frac{4262}{417}\cdot \frac{1}{\left(s+4\right)^2-13}-
+\end{equation*} 
+\begin{equation*}
+     \frac{65}{4309}\cdot \frac{s+\frac{5}{2}}{\left(s+\frac{5}{2}\right)^2+\frac{3}{4}}-\frac{1703}{8618}\cdot \frac{1}{\left(s+\frac{5}{2}\right)^2+\frac{3}{4}}\biggr\}
+\end{equation*}
+\mathrm{Using\:the\:linearity\:property\:of\:Inverse\:Laplace\:Transform:} \\
+\mathrm{For\:functions\:}f\left(s\right),\:g\left(s\right)\mathrm{\:and\:constants\:}a,\:b:\quad L^{-1}\left\{a\cdot f\left(s\right)+b\cdot g\left(s\right)\right\}=a\cdot L^{-1}\left\{f\left(s\right)\right\}+b\cdot L^{-1}\left\{g\left(s\right)\right\}
+\end{frame}
+\begin{frame}{Solution}
+\begin{equation*}
+    =-L^{-1}\left\{\frac{266}{93\left(s+8\right)}\right\}+\frac{1199}{417}L^{-1}\left\{\frac{s+4}{\left(s+4\right)^2-13}\right\}
+\end{equation*}
+\begin{equation*}
+    -\frac{4262}{417}L^{-1}\left\{\frac{1}{\left(s+4\right)^2-13}\right\}-\frac{65}{4309}L^{-1}\left\{\frac{s+\frac{5}{2}}{\left(s+\frac{5}{2}\right)^2+\frac{3}{4}}\right\}
+\end{equation*}
+
+\begin{equation*}
+    -\frac{1703}{8618}L^{-1}\left\{\frac{1}{\left(s+\frac{5}{2}\right)^2+\frac{3}{4}}\right\}
+\end{equation*}
+\begin{equation*}
+    =-\frac{266}{93}e^{-8t}+\frac{1199}{417}e^{-4t}\cosh \left(\sqrt{13}t\right)-\frac{4262}{417}e^{-4t}\frac{1}{\sqrt{13}}\sinh \left(\sqrt{13}t\right)
+\end{equation*}
+\begin{equation*}
+    -\frac{65}{4309}e^{-\frac{5t}{2}}\cos \left(\frac{\sqrt{3}t}{2}\right)-\frac{1703}{8618}\cdot \frac{2}{\sqrt{3}}e^{-\frac{5t}{2}}\sin \left(\frac{\sqrt{3}t}{2}\right)
+\end{equation*}
+\end{frame}
+\begin{frame}{Solution}
+\begin{equation*}
+    =-\frac{266}{93}e^{-8t}+\frac{1199}{417}e^{-4t}\cosh \left(\sqrt{13}t\right)-\frac{4262}{417\sqrt{13}}e^{-4t}\sinh \left(\sqrt{13}t\right)
+\end{equation*}
+\begin{equation*}
+    -\frac{65}{4309}e^{-\frac{5t}{2}}\cos \left(\frac{\sqrt{3}t}{2}\right)-\frac{1703e^{-\frac{5t}{2}}\sin \left(\frac{\sqrt{3}t}{2}\right)}{4309\sqrt{3}}
+\end{equation*}
+\therefore \textbf{Inverse}\:\textbf{Laplace}\:\textbf{Transform}\:\textbf{of}: \\
+\begin{equation*}
+    \frac{(s^3+4s^2+2s+6)}{(s+8)(s^2+8s+3)(s^2+5s+7)} \quad is
+\end{equation*}
+\begin{equation*}
+    =-\frac{266}{93}e^{-8t}+\frac{1199}{417}e^{-4t}\cosh \left(\sqrt{13}t\right)-\frac{4262}{417\sqrt{13}}e^{-4t}\sinh \left(\sqrt{13}t\right)
+\end{equation*}
+\begin{equation*}
+    -\frac{65}{4309}e^{-\frac{5t}{2}}\cos \left(\frac{\sqrt{3}t}{2}\right)-\frac{1703e^{-\frac{5t}{2}}\sin \left(\frac{\sqrt{3}t}{2}\right)}{4309\sqrt{3}}
+\end{equation*}
+\end{frame}
+
+\section{Code}
+
+%\begin{frame}
+%\frametitle{Introduction}
+%\framesubtitle{Literature}
+%%\begin{figure}[t!]
+%%    \centering
+%%    \begin{subfigure}[t]{0.4\columnwidth}
+%%        \centering
+%%        \includegraphics[width=\columnwidth]{point_source}
+%%        \caption{Single point source}
+%%\label{fig3:subfig1}        
+%%    \end{subfigure}%
+%%    ~ 
+%%    \begin{subfigure}[t]{0.4\columnwidth}
+%%        \centering
+%%        \includegraphics[width=\columnwidth]{pointNoPowerDist_new}
+%%        \caption{SNR profile}
+%%\label{fi%%g3:subfig2}
+%%    \end{subfigure}
+%%  %  \caption{Average SNR for a BPP. $N=16$}
+%%    \label{fig3}
+%%  \end{figure}
+%
+%\end{frame}
+%  
+%
+%
+
+\subsection{Python}
+\begin{frame}
+\frametitle{Python Code for Function a.}
+\lstinputlisting[language=python,
+firstline=1,lastline=15,
+basicstyle=\small]{a.py}
+
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Terminal a : }
+{\footnotesize
+
+
+%
+\begin{figure}
+\centering
+\includegraphics[width=1\columnwidth]{./a.png}
+
+\label{fig:plane}
+\end{figure}
+\end{frame}
+\begin{frame}
+\frametitle{Python Code for Function b.}
+\lstinputlisting[language=python,
+firstline=1,lastline=14,
+basicstyle=\small]{b.py}
+\end{frame}
+\begin{frame}
+\frametitle{Python Code for Function b.}
+\lstinputlisting[language=python,
+firstline=16,lastline=25,
+basicstyle=\small]{b.py}
+\end{frame}
+\begin{frame}
+\frametitle{Python Code for Function b.}
+\lstinputlisting[language=python,
+firstline=27,lastline=38,
+basicstyle=\small]{b.py}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Terminal b : }
+{\footnotesize
+
+
+%
+\begin{figure}
+\centering
+\includegraphics[width=1.02\columnwidth]{./b.png}
+
+\label{fig:plane}
+\end{figure}
+\end{frame}
+
+
+\end{frame}
+\end{document}
